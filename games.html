@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console Mars l Games</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+        .navbar {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #1a1a1a;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            white-space: nowrap;
+        }
+        .navbar .logo {
+            font-size: 26px;
+            font-weight: 600;
+            color: #4caf50;
+            margin-right: 20px;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar ul li {
+            margin: 0 10px;
+        }
+        .navbar ul li a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s, border-bottom 0.3s;
+            border-bottom: 2px solid transparent;
+            padding: 5px 0;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+        .navbar ul li a i {
+            margin-right: 5px;
+        }
+        .navbar ul li a:hover {
+            color: #fff;
+            border-bottom: 2px solid #4caf50;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .search-bar input {
+            width: 50%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #333;
+            color: #ffffff;
+        }
+        .search-bar input::placeholder {
+            color: #aaaaaa;
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4caf50;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .search-bar button:hover {
+            background-color: #45a049;
+        }
+        .games-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .game-card {
+            background-color: #2c2c2c;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .game-card:hover {
+            transform: scale(1.05);
+        }
+        .game-card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .game-card h3 {
+            margin: 10px 0;
+            font-size: 18px;
+            pointer-events: none;
+        }
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 10px 20px;
+            }
+            .navbar ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            .navbar ul li {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Console Mars</div>
+        <ul>
+            <li><a href="index.html"><i class="material-icons">home</i>Home</a></li>
+
+            <li><a href="about.html"><i class="material-icons">info</i>About</a></li>
+            <li><a href="suggestions.html"><i class="material-icons">feedback</i>Suggestions</a></li>
+        </ul>
+    </div>
+    <br/><br/><br/><br/><br/>
+    <center>
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search for a game...">
+        <button onclick="searchGames()">Search</button>
+    </div>
+    </center>
+    <div class="games-list" id="games-list">
+        <div class="game-card" onclick="window.location.href='games/Slope';">
+            <img src="gameimages/slope.webp" alt="Slope">
+            <h3>Slope</h3>
+            <p>Some description of Game 1.</p>
+        </div>
+        <div class="game-card" onclick="window.location.href='game2.html';">
+            <img src="gameimages/blockpost.jpeg" alt="Game 2">
+            <h3>Blockpost</h3>
+            <p>Skullcap Studios</p>
+        </div>
+        <div class="game-card" onclick="window.location.href='game3.html';">
+            <img src="game3.jpg" alt="Game 3">
+            <h3>Game Title 3</h3>
+            <p>Some description of Game 3.</p>
+        </div>
+        <!-- Add more game cards as needed -->
+    </div>
+
+    <script>
+        function searchGames() {
+            const input = document.getElementById('search-input').value.toLowerCase();
+            const gameCards = document.getElementsByClassName('game-card');
+
+            for (let i = 0; i < gameCards.length; i++) {
+                const gameCard = gameCards[i];
+                const title = gameCard.getElementsByTagName('h3')[0].innerText.toLowerCase();
+                const description = gameCard.getElementsByTagName('p')[0].innerText.toLowerCase();
+
+                if (title.includes(input) || description.includes(input)) {
+                    gameCard.style.display = '';
+                } else {
+                    gameCard.style.display = 'none';
+                }
+            }
+        }
+    </script>
+    <script src="settings.js"></script>
+</body>
+</html>
