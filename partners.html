@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Console Mars l Premium</title>
+    <title>Console Mars | Partnerships</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
@@ -60,88 +60,70 @@
             color: #fff;
             border-bottom: 2px solid #4caf50;
         }
-        .content {
+        .partnership-content {
             padding: 80px 20px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             max-width: 800px;
             margin: 0 auto;
+            text-align: center;
         }
-        .content-section {
+        .partnership-section {
             background-color: #2c2c2c;
             border-radius: 10px;
             padding: 30px;
             margin: 20px 0;
-            text-align: center;
         }
-        .content-section h1 {
+        .partnership-section h1 {
             font-size: 32px;
             margin-bottom: 20px;
             color: #4caf50;
         }
-        .content-section p {
+        .partnership-section p {
             font-size: 18px;
             line-height: 1.6;
             color: #aaa;
         }
-        .premium-features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        .partnership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .partnership-card {
+            background-color: #333;
+            border-radius: 10px;
             padding: 20px;
-        }
-        .feature-card {
-            background-color: #2c2c2c;
-            border-radius: 10px;
-            margin: 10px;
-            padding: 20px;
-            width: 250px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
-            transition: transform 0.2s;
+            transition: transform 0.3s;
         }
-        .feature-card:hover {
-            transform: scale(1.05);
+        .partnership-card:hover {
+            transform: translateY(-5px);
         }
-        .feature-card img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-        .feature-card h3 {
-            margin: 10px 0;
-            font-size: 20px;
-        }
-        .apply-section {
-            background-color: #2c2c2c;
-            border-radius: 10px;
-            padding: 30px;
-            margin: 20px 0;
-            text-align: center;
-            width: 100%;
-        }
-        .apply-section h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
+        .partnership-card h2 {
+            font-size: 24px;
             color: #4caf50;
+            margin-bottom: 15px;
         }
-        .apply-section iframe {
-            width: 100%;
-            height: 500px;
-            border: none;
-            border-radius: 10px;
+        .partnership-card p {
+            font-size: 16px;
+            color: #aaa;
+            margin-bottom: 15px;
         }
-        @media (max-width: 600px) {
-            .navbar {
-                padding: 10px 20px;
-            }
-            .navbar ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            .navbar ul li {
-                margin: 5px 0;
-            }
+        .partnership-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background-color: #4caf50;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
         }
+        .partnership-card a:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        /* Footer Styles */
         .footer {
             background-color: #1a1a1a;
             padding: 20px 0;
@@ -159,6 +141,12 @@
         .footer a:hover {
             color: #fff;
         }
+        .footer img {
+            width: 30px;
+            height: 30px;
+            margin: 0 10px;
+            vertical-align: middle;
+        }
     </style>
 </head>
     <!-- Google tag (gtag.js) -->
@@ -174,39 +162,30 @@
     <div class="navbar">
         <div class="logo">Console Mars</div>
         <ul>
-            <li><a href="main.html"><i class="material-icons">home</i>Home</a></li>
+            <li><a href="#"><i class="material-icons">home</i>Home</a></li>
             <li><a href="games.html"><i class="material-icons">sports_esports</i>Games</a></li>
+            <li><a href="settings.html"><i class="material-icons">settings</i>Settings</a></li>
             <li><a href="about.html"><i class="material-icons">info</i>About</a></li>
-             <li><a href="settings.html"><i class="material-icons">settings</i>Settings</a></li>
+        </ul>
     </div>
-    <div class="content">
-        <div class="content-section">
-            <h1>Console Mars+</h1>
-            <p>Experience the best of Console Mars with this applicable subscription!</p>
-        </div>
-        <div class="premium-features">
-            <div class="feature-card">
-                <img src="normalimages/game.webp" alt="Feature 1">
-                <h3>Add your own game</h3>
-                <p>You can add your own game, that YOU created to the website by contacting us, and having this subscription!</p>
+    <div class="partnership-content">
+        <div class="partnership-section">
+            <h1>Our Partnerships</h1>
+            <p>We are proud to partner with the following organizations and companies. Together, we bring you the best experiences on Console Mars.</p>
+            <div class="partnership-grid">
+                <div class="partnership-card">
+                    <h2>Tunnel Games</h2>
+                    <p>Tunnel games has a full library of games. It has been up since 2023 changing the unblocked gaming site industry.</p> 
+                     <a href="https://linearmath.netlify.app">Visit</a>
+                   
+                </div>
+               
             </div>
-            <div class="feature-card">
-                <img src="normalimages/leak.png" alt="Feature 2">
-                <h3>Exclusive leaks</h3>
-                <p>Get exclusive leaks for our website that shows the latest features.</p>
-            </div>
-            <div class="feature-card">
-                <img src="normalimages/chat.jpg" alt="Feature 3">
-                <h3>Access to exclusive chat</h3>
-                <p>Since our chat feature will be coming, you will have an exclusive version of it.</p>
-            </div>
-        </div>
-        <div class="apply-section">
-            <h2>Apply Below</h2>
-            <iframe src="apply.html"></iframe>
         </div>
     </div>
    
-    <script src="settings.js"></script>
+        
+      
+    </div>
 </body>
 </html>
