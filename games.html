@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TGJJKS1PR"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-      gtag('config', 'G-6TGJJKS1PR');
+        gtag('config', 'G-6TGJJKS1PR');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Console Mars l Games</title>
+    <title>Console Mars | Games</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
@@ -136,7 +139,7 @@
         .image-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures the image covers the entire container */
+            object-fit: cover;
             transition: transform 0.3s ease;
         }
 
@@ -175,6 +178,20 @@
             opacity: 0.8;
         }
 
+        .pin-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #aaa;
+            transition: color 0.3s;
+        }
+
+        .pin-icon.pinned {
+            color: #4caf50;
+        }
+
         @media (max-width: 600px) {
             .navbar {
                 padding: 10px 20px;
@@ -191,7 +208,7 @@
         }
     </style>
 </head>
-    
+
 <body>
     <div class="navbar">
         <div class="logo">Console Mars</div>
@@ -201,30 +218,42 @@
             <li><a href="suggestions.html"><i class="material-icons">feedback</i>Suggestions</a></li>
         </ul>
     </div>
-    <br/><br/><br/><br/><br/>
+
+    <br /><br /><br /><br /><br />
     <center>
+        <h1>Pinned Games:</h1>
+        <div class="games-list" id="pinned-games-list">
+            <!-- Pinned games will appear here -->
+        </div>
+    </center>
+
     <div class="search-bar">
         <input type="text" id="search-input" placeholder="Search for a game...">
         <button onclick="searchGames()">Search</button>
     </div>
-    </center>
+
     <div class="games-list" id="games-list">
-        <div class="image-container" onclick="window.location.href='games/Monkey mart';">
+        <div class="image-container" data-title="Monkey Mart" data-dev="TinyDobbins" data-image="game images/monkey-mart.jpeg">
             <img src="game images/monkey-mart.jpeg" alt="Monkey Mart">
+            <i class="material-icons pin-icon" onclick="togglePin(event, 'Monkey Mart', 'TinyDobbins', 'game images/monkey-mart.jpeg')">push_pin</i>
             <div class="overlay">
                 <h3>Monkey Mart</h3>
                 <p>TinyDobbins</p>
             </div>
         </div>
-        <div class="image-container" onclick="window.location.href='games/Blockpost';">
+
+        <div class="image-container" data-title="Blockpost" data-dev="Skullcap Studios" data-image="game images/Blockpost.webp">
             <img src="game images/Blockpost.webp" alt="Blockpost">
+            <i class="material-icons pin-icon" onclick="togglePin(event, 'Blockpost', 'Skullcap Studios', 'game images/Blockpost.webp')">push_pin</i>
             <div class="overlay">
                 <h3>Blockpost</h3>
                 <p>Skullcap Studios</p>
             </div>
         </div>
-        <div class="image-container" onclick="window.location.href='games/Slope';">
+
+        <div class="image-container" data-title="Slope" data-dev="Y8" data-image="game images/slope.webp">
             <img src="game images/slope.webp" alt="Slope">
+            <i class="material-icons pin-icon" onclick="togglePin(event, 'Slope', 'Y8', 'game images/slope.webp')">push_pin</i>
             <div class="overlay">
                 <h3>Slope</h3>
                 <p>Y8</p>
@@ -234,6 +263,76 @@
     </div>
 
     <script>
+        // Function to toggle pin status
+        function togglePin(event, title, dev, image) {
+            event.stopPropagation(); // Prevent clicking on the game card
+            const pinIcon = event.target;
+            const pinnedGames = JSON.parse(localStorage.getItem('pinnedGames')) || [];
+
+            const gameIndex = pinnedGames.findIndex(game => game.title === title);
+
+            if (gameIndex === -1) {
+                // If not pinned, pin the game
+                pinnedGames.push({ title, dev, image });
+                pinIcon.classList.add('pinned');
+                pinIcon.style.color = '#aaa'; // Change color when pinned
+            } else {
+                // If already pinned, unpin the game
+                pinnedGames.splice(gameIndex, 1);
+                pinIcon.classList.remove('pinned');
+                pinIcon.style.color = '#aaa'; // Revert to original color when unpinned
+            }
+
+            localStorage.setItem('pinnedGames', JSON.stringify(pinnedGames));
+            displayPinnedGames();
+        }
+
+        // Function to display pinned games
+        function displayPinnedGames() {
+            const pinnedGamesList = document.getElementById('pinned-games-list');
+            const pinnedGames = JSON.parse(localStorage.getItem('pinnedGames')) || [];
+            pinnedGamesList.innerHTML = '';
+
+            pinnedGames.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'image-container';
+                gameCard.innerHTML = `
+                    <img src="${game.image}" alt="${game.title}">
+                    <i class="material-icons pin-icon pinned" onclick="togglePin(event, '${game.title}', '${game.dev}', '${game.image}')">push_pin</i>
+                    <div class="overlay">
+                        <h3>${game.title}</h3>
+                        <p>${game.dev}</p>
+                    </div>
+                `;
+                gameCard.addEventListener('click', function () {
+                    window.location.href = 'games/' + game.title.replace(/\s/g, '');
+                });
+                pinnedGamesList.appendChild(gameCard);
+            });
+        }
+
+        // Function to initialize the page
+        function initPage() {
+            displayPinnedGames();
+
+            const gameCards = document.getElementsByClassName('image-container');
+            const pinnedGames = JSON.parse(localStorage.getItem('pinnedGames')) || [];
+
+            Array.from(gameCards).forEach(card => {
+                const title = card.getAttribute('data-title');
+                const pinIcon = card.querySelector('.pin-icon');
+
+                if (pinnedGames.find(game => game.title === title)) {
+                    pinIcon.classList.add('pinned');
+                    pinIcon.style.color = '#4caf50'; // Ensure pinned icons are the correct color
+                } else {
+                    pinIcon.classList.remove('pinned');
+                    pinIcon.style.color = '#aaa'; // Ensure unpinned icons are the original color
+                }
+            });
+        }
+
+        // Search function
         function searchGames() {
             const input = document.getElementById('search-input').value.toLowerCase();
             const gameCards = document.getElementsByClassName('image-container');
@@ -250,7 +349,10 @@
                 }
             }
         }
+
+        // Initialize the page on load
+        window.onload = initPage;
     </script>
-    <script src="settings.js"></script>
 </body>
+
 </html>
