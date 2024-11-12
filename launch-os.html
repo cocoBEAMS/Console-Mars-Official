@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Launch Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            overflow: hidden;
+            color: #fff;
+        }
+
+        /* Centered Container */
+        .launch-container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Wow-Level Text */
+        h1 {
+            font-size: 60px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(100px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        /* Launch Button */
+        .launch-button {
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            color: #fff;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(100px);
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        .launch-button:hover {
+            background: rgba(0, 255, 127, 0.8);
+            box-shadow: 0 15px 45px rgba(0, 255, 127, 0.7);
+            transform: translateY(-10px);
+        }
+
+        /* Glowing Elements */
+        .glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent 70%);
+            opacity: 0.5;
+            z-index: 1;
+            pointer-events: none;
+            animation: pulse 5s infinite alternate;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.4;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow"></div>
+
+    <div class="launch-container">
+        <h1>Console OS</h1>
+        <p>The best, and well designed OS right in your browser! Click "Launch" to start you journey!</p>
+        <button class="launch-button" onclick="enterOS()">Launch OS</button>
+    </div>
+
+    <script>
+        function enterOS() {
+            window.location.href = "os.html";
+        }
+    </script>
+</body>
+</html>
